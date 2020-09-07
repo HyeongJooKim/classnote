@@ -11,15 +11,18 @@ import java.util.List;
 import com.bit.framework.emp.model.entity.EmpVo;
 
 public class EmpDao {
-	
-	private String url="jdbc:mysql://localhost:3306/xe";
-	private String user="scott";
-	private String password="tiger";
-	
-	public EmpDao() {
-		
+	private String driver;
+	private String url;
+	private String user;
+	private String password;
+
+	public EmpDao(String driver, String url, String user, String password) {
+		this.driver = driver;
+		this.url = url;
+		this.user = user;
+		this.password = password;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -43,5 +46,52 @@ public class EmpDao {
 				));
 		}
 		return list;
+	}
+
+	public void insertOne(String name, String sub, int pay) throws SQLException {
+		String sql="insert into emp (name,sub,nalja,pay) values (?,?,now(),?)";
+		try(
+				Connection conn=DriverManager.getConnection(url,user,password);
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				){
+			pstmt.setString(1,name);
+			pstmt.setString(2,sub);
+			pstmt.setInt(3,pay);
+			pstmt.executeUpdate();
+		}
+	}
+
+	public EmpVo selectOne(int parseInt) throws SQLException {
+		String sql="select * from emp where sabun=?";
+		try(
+				Connection conn=DriverManager.getConnection(url,user,password);
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				){
+			pstmt.setInt(1,parseInt);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next())
+				return new EmpVo(
+						rs.getInt("sabun")
+						,rs.getString("name")
+						,rs.getString("sub")
+						,rs.getDate("nalja")
+						,rs.getInt("pay")
+				);
+		}
+		return null;
+	}
+
+	public int updateOne(int sabun, String name, String sub, int pay) throws SQLException {
+		String sql="update emp set name=?,sub=?,pay=? where sabun=?";
+		try(
+				Connection conn=DriverManager.getConnection(url,user,password);
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				){
+			pstmt.setString(1,name);
+			pstmt.setString(2,sub);
+			pstmt.setInt(3,pay);
+			pstmt.setInt(4,sabun);
+			return pstmt.executeUpdate();
+		}
 	}
 }
