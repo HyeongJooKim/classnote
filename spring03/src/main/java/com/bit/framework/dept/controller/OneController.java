@@ -7,9 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.bit.framework.dept.model.DeptDao;
-import com.bit.framework.dept.model.entity.DeptVo;
 
-public class AddController implements Controller {
+public class OneController implements Controller {
 
 	DeptDao deptDao;
 	
@@ -19,17 +18,9 @@ public class AddController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		ModelAndView mav=new ModelAndView();
-		DeptVo bean=new DeptVo();
-		
-		request.getAttribute("deptno");
-		request.getAttribute("dname");
-		request.getAttribute("loc");
-		
-		
-		mav.setViewName("dept/add");
-		mav.addObject("list", deptDao.insertOne(bean));
-		return mav;
+
+		int deptno=Integer.parseInt(request.getParameter("idx"));
+		return new ModelAndView("dept/detail","bean",deptDao.selectOne(deptno));
 	}
 }
