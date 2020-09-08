@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	</script>
-	<title>index.jsp</title>
+	<title>dept/add.jsp</title>
 </head>
 <body>
 	<div class="container">
@@ -41,9 +41,28 @@
 		</div>
 		<div class="row" >
 		  <div class="col-md-12 text-center" id="content">
-		  
-		  	<img alt="" src="imgs/img01.jpg" class="img-thumnail" />
-		  
+		 	<div class="page-header">
+			  <h1>ADD PAGE <small>DEPT TABLE</small></h1>
+			</div>
+			<form class="form-horizontal" action="insert.bit" method="post">
+			  <div class="form-group">
+			    <label for="dname" class="col-sm-2 control-label">dname</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="dname" id="dname" placeholder="부서명 입력">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="loc" class="col-sm-2 control-label">loc</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="loc" id="loc" placeholder="위치 입력">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-default">입 력</button>
+			    </div>
+			  </div>
+			</form>
 		  </div>
 		</div>
 		<div class="row" id="footer">
