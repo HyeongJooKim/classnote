@@ -10,7 +10,6 @@ public class DeptDaoImpl2 implements DeptDao {
 	
 	SqlMapClient sqlMapClient;
 	
-	
 	public void setSqlMapClientFactory(SqlMapClient sqlMapClient) {
 		this.sqlMapClient = sqlMapClient;
 	}
