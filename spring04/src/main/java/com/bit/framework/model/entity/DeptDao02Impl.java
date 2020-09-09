@@ -20,7 +20,6 @@ public class DeptDao02Impl implements DeptDao {
 	JdbcTemplate jdbcTemplate;
 	PlatformTransactionManager transactionManager;
 	
-	
 	public void setTransactionManager(PlatformTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
 	}
@@ -85,7 +84,6 @@ public class DeptDao02Impl implements DeptDao {
 		} catch (Exception e) {
 			transactionManager.rollback(status);
 		}
-
 	}
 
 	public DeptVo selectOne(final int key) throws SQLException {
@@ -103,12 +101,10 @@ public class DeptDao02Impl implements DeptDao {
 	}
 
 	public int updateOne(DeptVo bean) throws SQLException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int deleteOne(int key) throws SQLException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -28,5 +28,4 @@ public class DeptService01Impl implements DeptService {
 	public DeptVo detail(int deptno) throws SQLException {
 		return deptDao.selectOne(deptno);
 	}
-	
 }
